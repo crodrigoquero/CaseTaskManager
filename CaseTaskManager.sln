@@ -9,6 +9,13 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CaseTaskManagerDb", "CaseTa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaseTaskManager.UI", "CaseTaskManager.UI\CaseTaskManager.UI.csproj", "{891E91AA-3847-47A3-AC6C-44BEA05C1D03}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E048B3D6-71E9-43C3-9155-C6CCEB910C6A}"
+	ProjectSection(SolutionItems) = preProject
+		improvements.md = improvements.md
+		readme.md = readme.md
+		setup.md = setup.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
