@@ -31,9 +31,9 @@ CaseTaskManager/
 
 ## Documentation
 
-- [⚙️ Setup & Installation Guide](docs/setup.md)  
-- [💡 Possible Improvements](docs/improvements.md)  
-- [🤝 Contributing Guidelines](docs/contributing.md)
+- [⚙️ Setup & Installation Guide](setup.md)  
+- [💡 Possible Improvements](improvements.md)  
+- [🤝 Contributing Guidelines](contributing.md)
 
 ---
  
