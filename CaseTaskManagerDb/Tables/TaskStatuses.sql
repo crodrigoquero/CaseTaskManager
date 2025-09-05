@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[TaskStatuses]
+(
+    Id INT PRIMARY KEY IDENTITY,
+    StatusName NVARCHAR(100) NOT NULL UNIQUE,
+    IsDeleted BIT NOT NULL DEFAULT 0
+)

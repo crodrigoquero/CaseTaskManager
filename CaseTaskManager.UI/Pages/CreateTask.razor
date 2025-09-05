@@ -1,0 +1,42 @@
+﻿@page "/tasks/create"
+
+
+<h3>Create New Task</h3>
+
+<EditForm Model="@newTask" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Case ID</label>
+        
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <InputText @bind-Value="newTask.Title" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <InputTextArea @bind-Value="newTask.Description" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Status ID</label>
+        <InputNumber @bind-Value="newTask.StatusId" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Task Type ID</label>
+        <InputNumber @bind-Value="newTask.TaskTypeId" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Due Date</label>
+        <InputDate @bind-Value="newTask.DueDate" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+</EditForm>

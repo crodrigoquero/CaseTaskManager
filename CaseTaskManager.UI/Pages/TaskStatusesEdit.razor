@@ -1,0 +1,42 @@
+﻿@page "/taskstatuses/edit/{Id:int}"
+
+<h3>Edit Task Status</h3>
+
+@if (isLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (model is null)
+{
+    <div class="alert alert-warning">Task status not found.</div>
+    <button class="btn btn-secondary" @onclick="Cancel">Back</button>
+}
+else
+{
+    <EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label class="form-label">Status Name</label>
+            <InputText @bind-Value="model.StatusName" class="form-control" />
+        </div>
+
+@*         <div class="mb-3">
+            <label class="form-label">Description</label>
+            <InputText @bind-Value="model.Description" class="form-control" />
+        </div> *@
+
+        <button type="submit" class="btn btn-primary" disabled="@saving">
+            @(saving ? "Saving..." : "Save")
+        </button>
+        <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel" disabled="@saving">
+            Cancel
+        </button>
+
+        @if (!string.IsNullOrWhiteSpace(error))
+        {
+            <div class="alert alert-danger mt-3">@error</div>
+        }
+    </EditForm>
+}

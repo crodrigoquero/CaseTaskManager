@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[CaseWorkers]
+(
+    Id INT PRIMARY KEY IDENTITY,
+    FullName NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(255) NOT NULL UNIQUE,
+    IsActive BIT NOT NULL DEFAULT 1,
+    IsDeleted BIT NOT NULL DEFAULT 0
+)

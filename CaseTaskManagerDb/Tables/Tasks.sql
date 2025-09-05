@@ -1,0 +1,15 @@
+﻿CREATE TABLE [dbo].[Tasks]
+(
+    Id INT PRIMARY KEY IDENTITY,
+    CaseId INT NOT NULL,
+    Title NVARCHAR(200) NOT NULL,
+    Description NVARCHAR(MAX),
+    StatusId INT NOT NULL,
+    TaskTypeId INT NOT NULL,
+    DueDate DATETIME2 NOT NULL,
+    CreatedAt DATETIME2 NOT NULL DEFAULT GETDATE(),
+    IsDeleted BIT NOT NULL DEFAULT 0,
+    FOREIGN KEY (CaseId) REFERENCES Cases(Id),
+    FOREIGN KEY (StatusId) REFERENCES TaskStatuses(Id),
+    FOREIGN KEY (TaskTypeId) REFERENCES TaskTypes(Id)
+)

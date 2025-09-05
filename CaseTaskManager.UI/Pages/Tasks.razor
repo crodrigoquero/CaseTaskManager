@@ -1,0 +1,41 @@
+﻿@page "/tasks"
+
+<h3>All Tasks</h3>
+
+<div class="mb-3">
+    <button class="btn btn-primary" @onclick="AddNewTask">
+        <span class="oi oi-plus" aria-hidden="true"></span> New Task
+    </button>
+</div>
+
+@if (allTasks is null || !allTasks.Any())
+{
+    <p>No tasks available.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Due Date</th>
+                <th style="width:160px">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in allTasks)
+            {
+                <tr>
+                    <td>@task.Title</td>
+                    <td>@task.StatusId</td> <!-- replace with status name if you have it -->
+                    <td>@task.DueDate.ToShortDateString()</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm me-2" @onclick="@(() => EditTask(task.Id))">Edit</button>
+                        <button class="btn btn-danger btn-sm" @onclick="@(() => GoToDelete(task.Id))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

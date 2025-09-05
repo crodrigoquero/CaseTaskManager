@@ -1,0 +1,49 @@
+﻿using CaseTaskManager.UI.Interfaces;
+using CaseTaskManager.UI.Models;
+
+public class CaseWorkerApiService : ICaseWorkerApiService
+{
+    private readonly HttpClient _http;
+
+    public CaseWorkerApiService(HttpClient http)
+    {
+        _http = http;
+    }
+
+    public async Task<List<CaseWorkerDto>> GetAllAsync() =>
+        await _http.GetFromJsonAsync<List<CaseWorkerDto>>("caseworkers/get/all/caseworkers") ?? new();
+
+    public async Task<CaseWorkerDto?> GetByIdAsync(int id)
+    {
+        // Matches [HttpGet("{id}")] on CaseWorkersController
+        var resp = await _http.GetAsync($"caseworkers/{id}");
+        if (resp.StatusCode == System.Net.HttpStatusCode.NotFound)
+            return null;
+
+        resp.EnsureSuccessStatusCode();
+        return await resp.Content.ReadFromJsonAsync<CaseWorkerDto>();
+    }
+
+
+    public async Task<int> AddAsync(CaseWorkerDto caseWorker)
+    {
+        var response = await _http.PostAsJsonAsync("caseworkers/add", caseWorker);
+        var result = await response.Content.ReadFromJsonAsync<Dictionary<string, int>>();
+        return result?["newCaseWorkerId"] ?? 0;
+    }
+
+    public async Task<bool> UpdateAsync(int id, CaseWorkerDto caseWorker) =>
+        (await _http.PutAsJsonAsync($"caseworkers/{id}", caseWorker)).IsSuccessStatusCode;
+
+    public async Task<bool> ActivateAsync(int id) =>
+        (await _http.PatchAsync($"caseworkers/activate/{id}", null)).IsSuccessStatusCode;
+
+    public async Task<bool> DeactivateAsync(int id) =>
+        (await _http.PatchAsync($"caseworkers/deactivate/{id}", null)).IsSuccessStatusCode;
+
+    public async Task<bool> DeleteAsync(int id) =>
+        (await _http.DeleteAsync($"caseworkers/{id}")).IsSuccessStatusCode;
+
+    public async Task<bool> CreateAsync(CreateCaseWorkerDto dto) =>
+    (await _http.PostAsJsonAsync("caseworkers/create/caseworker", dto)).IsSuccessStatusCode;
+}

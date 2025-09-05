@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[TaskTypes]
+(
+    Id INT PRIMARY KEY IDENTITY,
+    TypeName NVARCHAR(100) NOT NULL UNIQUE,
+    Description NVARCHAR(255) NULL,
+    IsDeleted BIT NOT NULL DEFAULT 0
+)

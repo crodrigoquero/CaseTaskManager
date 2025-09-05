@@ -1,0 +1,24 @@
+﻿@page "/caseworkers/delete/{Id:int}"
+
+<h3>Delete Case Worker</h3>
+
+@if (isLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (worker is null)
+{
+    <div class="alert alert-warning">Case Worker not found.</div>
+    <button class="btn btn-secondary" @onclick="Cancel">Back</button>
+}
+else
+{
+    <div class="alert alert-warning">
+        <p>Are you sure you want to delete this Case Worker?</p>
+        <p><strong>@worker.FullName</strong> - @worker.Email</p>
+    </div>
+
+    <button class="btn btn-danger" @onclick="ConfirmDelete">Yes, Delete</button>
+    <button class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+}
+

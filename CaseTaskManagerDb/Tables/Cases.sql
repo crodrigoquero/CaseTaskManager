@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Cases]
+(
+    Id INT PRIMARY KEY IDENTITY,
+    Title NVARCHAR(200) NOT NULL,
+    Description NVARCHAR(MAX),
+    CreatedAt DATETIME2 NOT NULL DEFAULT GETDATE(),
+    CurrentStatusId INT NULL,
+    IsDeleted BIT NOT NULL DEFAULT 0
+)

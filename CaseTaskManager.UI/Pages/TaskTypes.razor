@@ -1,0 +1,40 @@
+﻿@page "/tasktypes"
+
+
+<h3>Task Types</h3>
+
+<div class="mb-3">
+    <button class="btn btn-primary" @onclick="AddNew">Add Task Type</button>
+</div>
+
+@if (allTaskTypes.Count == 0)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var type in allTaskTypes)
+            {
+                <tr>
+                    <td>@type.Id</td>
+                    <td>@type.TypeName</td>
+                    <td>@type.Description</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="@(() => EditTaskType(type.Id))">Edit</button>
+                        <button class="btn btn-danger btn-sm" @onclick="@(() => GoToDelete(type.Id))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

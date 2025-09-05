@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CaseTaskManagerDb</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{ab17a693-2113-4117-ac1c-3956cd8875b6}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CaseTaskManagerDb</RootNamespace>
+    <AssemblyName>CaseTaskManagerDb</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Entities" />
+    <Folder Include="Entities\Task" />
+    <Folder Include="Entities\TaskStatus" />
+    <Folder Include="Entities\CaseStatus" />
+    <Folder Include="Entities\Case" />
+    <Folder Include="Entities\CaseWorker" />
+    <Folder Include="Entities\CaseAssignment" />
+    <Folder Include="Entities\TaskType" />
+    <Folder Include="Entities\CaseStatus\CRUD" />
+    <Folder Include="Entities\CaseWorker\CRUD" />
+    <Folder Include="Entities\CaseAssignment\CRUD" />
+    <Folder Include="Entities\TaskType\CRUD" />
+    <Folder Include="Entities\TaskStatus\CRUD" />
+    <Folder Include="Entities\Task\CRUD" />
+    <Folder Include="Entities\CaseStatus\CRUD\Create" />
+    <Folder Include="Entities\CaseStatus\CRUD\Read" />
+    <Folder Include="Entities\CaseStatus\CRUD\Update" />
+    <Folder Include="Entities\CaseStatus\CRUD\Delete" />
+    <Folder Include="Entities\Case\CRUD" />
+    <Folder Include="Entities\Case\CRUD\Create" />
+    <Folder Include="Entities\Case\CRUD\Update" />
+    <Folder Include="Entities\Case\CRUD\Read" />
+    <Folder Include="Entities\Case\CRUD\Delete" />
+    <Folder Include="Entities\CaseWorker\CRUD\Create" />
+    <Folder Include="Entities\CaseWorker\CRUD\Delete" />
+    <Folder Include="Entities\CaseWorker\CRUD\Update" />
+    <Folder Include="Entities\CaseWorker\CRUD\Read" />
+    <Folder Include="Entities\CaseAssignment\CRUD\Create" />
+    <Folder Include="Entities\CaseAssignment\CRUD\Delete" />
+    <Folder Include="Entities\CaseAssignment\CRUD\Update" />
+    <Folder Include="Entities\CaseAssignment\CRUD\Read" />
+    <Folder Include="Entities\TaskType\CRUD\Create" />
+    <Folder Include="Entities\TaskType\CRUD\Delete" />
+    <Folder Include="Entities\TaskType\CRUD\Read" />
+    <Folder Include="Entities\TaskType\CRUD\Update" />
+    <Folder Include="Entities\TaskStatus\CRUD\Create" />
+    <Folder Include="Entities\TaskStatus\CRUD\Delete" />
+    <Folder Include="Entities\TaskStatus\CRUD\Read" />
+    <Folder Include="Entities\TaskStatus\CRUD\Update" />
+    <Folder Include="Entities\Task\CRUD\Create" />
+    <Folder Include="Entities\Task\CRUD\Read" />
+    <Folder Include="Entities\Task\CRUD\Delete" />
+    <Folder Include="Entities\Task\CRUD\Update" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TablesCreation.sql" />
+    <None Include="CaseTaskManagerDb.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Entities\CaseStatus\CRUD\Create\sp_AddCaseStatus.sql" />
+    <Build Include="Entities\Task\CRUD\Create\sp_AddTask.sql" />
+    <Build Include="Entities\TaskType\CRUD\Delete\sp_DeleteTaskType.sql" />
+    <Build Include="Entities\TaskType\CRUD\Read\sp_GetAllTaskTypes.sql" />
+    <Build Include="Entities\TaskType\CRUD\Create\sp_AddTaskType.sql" />
+    <Build Include="Entities\Task\CRUD\Delete\sp_DeleteTask.sql" />
+    <Build Include="Entities\CaseStatus\CRUD\Delete\sp_DeleteCaseStatus.sql" />
+    <Build Include="Entities\CaseStatus\CRUD\Read\sp_GetAllCaseStatuses.sql" />
+    <Build Include="Entities\CaseStatus\CRUD\Read\sp_GetCaseStatusById.sql" />
+    <Build Include="Entities\CaseStatus\CRUD\Update\sp_UpdateCaseStatusDetails.sql" />
+    <Build Include="Entities\Task\CRUD\Read\sp_GetTaskById.sql" />
+    <Build Include="Entities\Task\CRUD\Update\sp_UpdateTask.sql" />
+    <Build Include="Entities\TaskType\CRUD\Update\sp_UpdateTaskType.sql" />
+    <Build Include="Entities\Task\CRUD\Read\sp_GetTasksByCaseId.sql" />
+    <Build Include="Entities\TaskStatus\CRUD\Create\sp_AddTaskStatus.sql" />
+    <Build Include="Entities\TaskStatus\CRUD\Read\sp_GetTaskStatusById.sql" />
+    <Build Include="Entities\TaskStatus\CRUD\Read\sp_GetAllTaskStatuses.sql" />
+    <Build Include="Entities\TaskStatus\CRUD\Delete\sp_DeleteTaskStatus.sql" />
+    <Build Include="Entities\Case\CRUD\Create\sp_AddCase.sql" />
+    <Build Include="Entities\Case\CRUD\Read\sp_GetCaseById.sql" />
+    <Build Include="Entities\Case\CRUD\Read\sp_GetAllCases.sql" />
+    <Build Include="Entities\Case\CRUD\Update\sp_UpdateCase.sql" />
+    <Build Include="Entities\Case\CRUD\Delete\sp_DeleteCase.sql" />
+    <Build Include="Entities\CaseWorker\CRUD\Create\sp_AddCaseWorker.sql" />
+    <Build Include="Entities\CaseWorker\CRUD\Read\sp_GetCaseWorkerById.sql" />
+    <Build Include="Entities\CaseWorker\CRUD\Read\sp_GetAllCaseWorkers.sql" />
+    <Build Include="Entities\CaseWorker\CRUD\Update\sp_UpdateCaseWorker.sql" />
+    <Build Include="Entities\CaseWorker\CRUD\Delete\sp_DeleteCaseWorker.sql" />
+    <Build Include="Entities\CaseAssignment\CRUD\Create\sp_AddCaseAssignment.sql" />
+    <Build Include="Entities\CaseAssignment\CRUD\Read\sp_GetCaseAssignmentById.sql" />
+    <Build Include="Entities\CaseAssignment\CRUD\Read\sp_GetAssignmentsByCaseId.sql" />
+    <Build Include="Entities\CaseAssignment\CRUD\Read\sp_GetAssignmentsByCaseWorkerId.sql" />
+    <Build Include="Entities\CaseAssignment\CRUD\Delete\sp_RemoveCaseAssignment.sql" />
+    <Build Include="Entities\CaseWorker\CRUD\Update\sp_DeactivateCaseWorker.sql" />
+    <Build Include="Entities\CaseWorker\CRUD\Update\sp_ActivateCaseWorker.sql" />
+    <Build Include="Tables\CaseWorkers.sql" />
+    <Build Include="Tables\Cases.sql" />
+    <Build Include="Tables\CaseStatuses.sql" />
+    <Build Include="Tables\CaseAssignments.sql" />
+    <Build Include="Tables\Tasks.sql" />
+    <Build Include="Tables\TaskStatuses.sql" />
+    <Build Include="Tables\TaskTypes.sql" />
+    <Build Include="Entities\Task\CRUD\Read\sp_GetAllTasks.sql" />
+    <Build Include="Entities\TaskType\CRUD\Read\sp_GetTaskTypeById.sql" />
+    <Build Include="Entities\Task\CRUD\Read\sp_GetTasksByTypeId.sql" />
+    <Build Include="Entities\Task\CRUD\Update\sp_UpdateTaskStatus.sql" />
+    <Build Include="Entities\Case\CRUD\Update\sp_UpdateCaseStatus.sql" />
+  </ItemGroup>
+</Project>

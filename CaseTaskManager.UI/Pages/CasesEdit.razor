@@ -1,0 +1,36 @@
+﻿@page "/cases/edit/{Id:int}"
+
+<h3>Edit Case</h3>
+
+@if (loading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (model is null)
+{
+    <p class="text-danger">Case not found.</p>
+}
+else
+{
+    <EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <InputText @bind-Value="model.Title" class="form-control" />
+            <ValidationMessage For="@(() => model.Title)" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <InputTextArea @bind-Value="model.Description" class="form-control" />
+            <ValidationMessage For="@(() => model.Description)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" disabled="@saving">
+            @(saving ? "Saving..." : "Save Changes")
+        </button>
+        <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+    </EditForm>
+}

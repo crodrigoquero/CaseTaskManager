@@ -1,0 +1,26 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build outputs
+bin/
+obj/
+Debug/
+Release/
+
+# ASP.NET static outputs (optional)
+wwwroot/lib/
+wwwroot/dist/
+
+# SQL/DB project + local DB files
+*.dbmdl
+*.mdf
+*.ldf
+*.ndf
+*.dacpac
+*.jfm
+
+# Rider/VSCode/other IDE (optional)
+.idea/
+.vscode/

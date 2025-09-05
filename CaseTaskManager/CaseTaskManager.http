@@ -1,0 +1,6 @@
+@CaseTaskManager_HostAddress = http://localhost:5030
+
+GET {{CaseTaskManager_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

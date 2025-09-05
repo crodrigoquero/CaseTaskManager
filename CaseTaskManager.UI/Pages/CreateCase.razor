@@ -1,0 +1,45 @@
+﻿@page "/cases/create"
+@using Microsoft.AspNetCore.Components.Forms
+@using CaseTaskManager.UI.Models.Case
+@using CaseTaskManager.UI.Models.CaseStatus
+
+<h3>Create New Case</h3>
+
+@if (!string.IsNullOrWhiteSpace(error))
+{
+    <div class="alert alert-danger">@error</div>
+}
+
+<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <InputText @bind-Value="newCase.Title" class="form-control" />
+        <ValidationMessage For="@(() => newCase.Title)" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <InputTextArea @bind-Value="newCase.Description" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <InputSelect @bind-Value="newCase.CurrentStatusId" class="form-control">
+            <option value="">-- Select status --</option>
+            @foreach (var s in caseStatuses)
+            {
+                <option value="@s.Id">@s.StatusName</option>
+            }
+        </InputSelect>
+    </div>
+
+    <button type="submit" class="btn btn-primary" disabled="@saving">
+        @(saving ? "Saving..." : "Save")
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel" disabled="@saving">
+        Cancel
+    </button>
+</EditForm>

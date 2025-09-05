@@ -1,0 +1,37 @@
+﻿@page "/casestatuses"
+
+<h3>Case Statuses</h3>
+
+<div class="mb-3">
+    <button class="btn btn-primary" @onclick="AddNew">Add Case Status</button>
+</div>
+
+@if (allCaseStatuses.Count == 0)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var status in allCaseStatuses)
+            {
+                <tr>
+                    <td>@status.Id</td>
+                    <td>@status.StatusName</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="@(() => EditCaseStatus(status.Id))">Edit</button>
+                        <button class="btn btn-danger btn-sm" @onclick="@(() => DeleteCaseStatus(status.Id))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

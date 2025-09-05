@@ -1,0 +1,44 @@
+﻿@page "/caseworkers"
+
+
+<h3>Case Workers</h3>
+
+<button class="btn btn-primary mb-3" @onclick="AddNew">Add Case Worker</button>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (allCaseWorkers.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Is Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var worker in allCaseWorkers)
+            {
+                <tr>
+                    <td>@worker.FullName</td>
+                    <td>@worker.Email</td>
+                    <td>@(worker.IsActive ? "Yes" : "No")</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" @onclick="() => ToggleStatus(worker.Id, worker.IsActive)">
+                            @(worker.IsActive ? "Deactivate" : "Activate")
+                        </button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => NavigateToDelete(worker.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No case workers found.</p>
+}
