@@ -24,5 +24,5 @@ dotnet run
 cd CaseTaskManager.UI
 dotnet run
 ```
-
+  
 Then open: [http://localhost:7231](http://localhost:7231)
