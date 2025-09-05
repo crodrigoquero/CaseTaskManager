@@ -36,7 +36,7 @@ CaseTaskManager/
 - [🤝 Contributing Guidelines](docs/contributing.md)
 
 ---
-
+ 
 ## 🛠️ Tech Stack
 
 - **.NET 7 / 8**  

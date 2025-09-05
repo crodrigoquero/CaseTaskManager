@@ -9,4 +9,4 @@ Ideas to extend CaseTaskManager:
 - Extend schema with comments, attachments, or tags  
 - Add **unit & integration tests**  
 - Deploy to **Azure App Service** with Azure SQL Database  
- 
+  

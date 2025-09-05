@@ -11,12 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaseTaskManager.UI", "CaseT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E048B3D6-71E9-43C3-9155-C6CCEB910C6A}"
 	ProjectSection(SolutionItems) = preProject
-		readme.md = readme.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A853113B-E2EE-40C7-BDF4-65A41AC3A0B7}"
-	ProjectSection(SolutionItems) = preProject
 		improvements.md = improvements.md
+		readme.md = readme.md
 		setup.md = setup.md
 	EndProjectSection
 EndProject

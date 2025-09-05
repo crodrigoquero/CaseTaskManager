@@ -5,7 +5,7 @@
 git clone https://github.com/crodrigoquero/CaseTaskManager.git
 cd CaseTaskManager
 ```
- 
+  
 ## 2. Database Setup
 - Go to `CaseTaskManagerDb/`
 - Run the scripts in your SQL Server instance
