@@ -10,8 +10,6 @@ namespace CaseTaskManager.UI.Models
 
         [Required, EmailAddress, StringLength(255)]
         public string Email { get; set; } = string.Empty;
-
-        // Optional; your API default is active=1. Keep it if you want to toggle at creation.
         public bool IsActive { get; set; } = true;
     }
 

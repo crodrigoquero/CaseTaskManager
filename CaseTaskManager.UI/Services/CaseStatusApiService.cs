@@ -39,7 +39,6 @@ namespace CaseTaskManager.UI.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            // API route is DELETE api/CaseStatuses/{id}
             var response = await _http.DeleteAsync($"casestatuses/{id}");
             return response.IsSuccessStatusCode;
         }

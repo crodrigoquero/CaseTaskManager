@@ -15,7 +15,6 @@ public class CaseWorkerApiService : ICaseWorkerApiService
 
     public async Task<CaseWorkerDto?> GetByIdAsync(int id)
     {
-        // Matches [HttpGet("{id}")] on CaseWorkersController
         var resp = await _http.GetAsync($"caseworkers/{id}");
         if (resp.StatusCode == System.Net.HttpStatusCode.NotFound)
             return null;
