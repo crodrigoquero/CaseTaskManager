@@ -1,5 +1,5 @@
 # Seed Task Statuses
-
+  
 This script inserts default **Task Statuses** into the database.  
 It is **idempotent**: running it multiple times will not duplicate records.
 

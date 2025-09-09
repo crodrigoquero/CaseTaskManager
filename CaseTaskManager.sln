@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 		seed-case-statuses.md = seed-case-statuses.md
 		setup.md = setup.md
+		seed-task-statuses.md = seed-task-statuses.md
 	EndProjectSection
 EndProject
 Global
