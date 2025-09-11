@@ -2,7 +2,7 @@
 using CaseTaskManager.UI.Models.CaseStatus;
 using Microsoft.AspNetCore.Components;
 
-namespace CaseTaskManager.UI.Pages;
+namespace CaseTaskManager.UI.Pages.CaseStatuses;
 
 public partial class CaseStatusesEdit : ComponentBase
 {

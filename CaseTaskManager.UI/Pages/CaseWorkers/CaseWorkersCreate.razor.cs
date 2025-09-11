@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using CaseTaskManager.UI.Interfaces;
 using CaseTaskManager.UI.Models;
 
-namespace CaseTaskManager.UI.Pages
+namespace CaseTaskManager.UI.Pages.CaseWorkers
 {
     public partial class CaseWorkersCreate
     {

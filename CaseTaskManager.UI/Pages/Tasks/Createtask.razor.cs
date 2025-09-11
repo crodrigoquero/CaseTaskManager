@@ -3,7 +3,7 @@ using CaseTaskManager.UI.Models.Tasks;
 using CaseTaskManager.UI.Interfaces;
 
 
-namespace CaseTaskManager.UI.Pages
+namespace CaseTaskManager.UI.Pages.Tasks
 {
     public partial class CreateTask
     {

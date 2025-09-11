@@ -2,7 +2,7 @@
 using CaseTaskManager.UI.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace CaseTaskManager.UI.Pages;
+namespace CaseTaskManager.UI.Pages.CaseWorkers;
 
 public partial class CaseWorkers : ComponentBase
 {

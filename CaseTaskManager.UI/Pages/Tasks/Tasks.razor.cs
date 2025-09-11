@@ -3,7 +3,7 @@ using CaseTaskManager.UI.Models;
 using CaseTaskManager.UI.Services;
 using Microsoft.AspNetCore.Components;
 
-namespace CaseTaskManager.UI.Pages;
+namespace CaseTaskManager.UI.Pages.Tasks;
 
 public partial class Tasks
 {

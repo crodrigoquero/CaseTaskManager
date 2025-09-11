@@ -2,12 +2,11 @@
 using CaseTaskManager.UI.Interfaces;
 using CaseTaskManager.UI.Models.CaseStatus;
 
-namespace CaseTaskManager.UI.Pages;
+namespace CaseTaskManager.UI.Pages.TaskStatuses;
 
 public partial class TaskStatusesEdit : ComponentBase
 {
     [Parameter] public int Id { get; set; }
-
     [Inject] private ITaskStatusApiService Api { get; set; } = default!;
     [Inject] private NavigationManager Nav { get; set; } = default!;
 

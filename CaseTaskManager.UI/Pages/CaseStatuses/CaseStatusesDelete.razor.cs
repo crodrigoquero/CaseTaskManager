@@ -2,7 +2,7 @@
 using CaseTaskManager.UI.Interfaces;
 using CaseTaskManager.UI.Models.CaseStatus;
 
-namespace CaseTaskManager.UI.Pages;
+namespace CaseTaskManager.UI.Pages.CaseStatuses;
 
 public partial class CaseStatusesDelete : ComponentBase
 {

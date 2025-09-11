@@ -4,7 +4,7 @@ using CaseTaskManager.UI.Interfaces;
 using CaseTaskManager.UI.Models.Case;
 using CaseTaskManager.UI.Models.CaseStatus;
 
-namespace CaseTaskManager.UI.Pages
+namespace CaseTaskManager.UI.Pages.Cases
 {
     public partial class CreateCase
     {

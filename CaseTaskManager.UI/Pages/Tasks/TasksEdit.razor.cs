@@ -2,7 +2,7 @@
 using CaseTaskManager.UI.Interfaces;
 using CaseTaskManager.UI.Models.Tasks;
 
-namespace CaseTaskManager.UI.Pages;
+namespace CaseTaskManager.UI.Pages.Tasks;
 
 public partial class TasksEdit : ComponentBase
 {
