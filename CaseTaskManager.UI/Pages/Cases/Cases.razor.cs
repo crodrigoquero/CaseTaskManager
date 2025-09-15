@@ -1,5 +1,5 @@
 ﻿using CaseTaskManager.UI.Interfaces;
-using CaseTaskManager.UI.Models;
+using CaseTaskManager.UI.Models.Case;
 using Microsoft.AspNetCore.Components;
 
 namespace CaseTaskManager.UI.Pages.Cases;

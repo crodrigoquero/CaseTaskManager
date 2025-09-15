@@ -1,4 +1,4 @@
-﻿using CaseTaskManager.UI.Models;
+﻿using CaseTaskManager.UI.Models.CaseWorker;
 
 namespace CaseTaskManager.UI.Interfaces
 {

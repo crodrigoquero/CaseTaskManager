@@ -1,4 +1,4 @@
-﻿namespace CaseTaskManager.UI.Models
+﻿namespace CaseTaskManager.UI.Models.TaskType
 {
     public class TaskTypeDto
     {

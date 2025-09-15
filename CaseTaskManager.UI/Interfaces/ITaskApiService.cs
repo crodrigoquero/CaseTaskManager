@@ -1,5 +1,4 @@
-﻿using CaseTaskManager.UI.Models;
-using CaseTaskManager.UI.Models.Tasks;
+﻿using CaseTaskManager.UI.Models.Tasks;
 
 namespace CaseTaskManager.UI.Interfaces
 {

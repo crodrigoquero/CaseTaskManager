@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using CaseTaskManager.UI.Interfaces;
-using CaseTaskManager.UI.Models;
+using CaseTaskManager.UI.Models.TaskType;
 
 namespace CaseTaskManager.UI.Pages.TaskTypes;
 

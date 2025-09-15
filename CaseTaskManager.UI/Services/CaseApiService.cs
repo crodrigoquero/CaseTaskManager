@@ -1,6 +1,5 @@
 ﻿using System.Net.Http.Json;
 using CaseTaskManager.UI.Interfaces;
-using CaseTaskManager.UI.Models;
 using CaseTaskManager.UI.Models.Case;
 
 namespace CaseTaskManager.UI.Services;

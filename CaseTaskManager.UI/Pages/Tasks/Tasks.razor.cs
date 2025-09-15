@@ -1,5 +1,5 @@
 ﻿using CaseTaskManager.UI.Interfaces;
-using CaseTaskManager.UI.Models;
+using CaseTaskManager.UI.Models.Tasks;
 using CaseTaskManager.UI.Services;
 using Microsoft.AspNetCore.Components;
 

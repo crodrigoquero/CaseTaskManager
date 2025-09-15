@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\TaskStatus\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="C:\Users\User\source\repos\CaseTaskManager\CaseTaskManager.UI\Pages\.editorconfig" />
   </ItemGroup>
 

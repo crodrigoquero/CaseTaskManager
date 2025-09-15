@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
 using CaseTaskManager.UI.Interfaces;
-using CaseTaskManager.UI.Models;
 using CaseTaskManager.UI.Models.CaseStatus;
+using CaseTaskManager.UI.Models.TaskStatus;
 
 namespace CaseTaskManager.UI.Services
 {

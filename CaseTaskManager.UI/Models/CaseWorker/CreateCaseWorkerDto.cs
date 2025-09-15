@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CaseTaskManager.UI.Models
+namespace CaseTaskManager.UI.Models.CaseWorker
 {
 
     public class CreateCaseWorkerDto

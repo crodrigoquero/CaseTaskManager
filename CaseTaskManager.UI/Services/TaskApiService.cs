@@ -1,5 +1,4 @@
-﻿using CaseTaskManager.UI.Models;
-using CaseTaskManager.UI.Models.Tasks;
+﻿using CaseTaskManager.UI.Models.Tasks;
 using CaseTaskManager.UI.Interfaces;
 
 namespace CaseTaskManager.UI.Services
