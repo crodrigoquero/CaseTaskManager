@@ -1,28 +1,17 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using CaseTaskManager.UI.Interfaces;
 using CaseTaskManager.UI.Models;
 
-namespace CaseTaskManager.UI.Pages.CaseWorkers
+namespace CaseTaskManager.UI.Pages.TaskTypes
 {
-    public partial class CaseWorkersCreate
+    public partial class Create : ComponentBase
     {
-        [Inject] private ICaseWorkerApiService Api { get; set; } = default!;
+        [Inject] private ITaskTypeApiService Api { get; set; } = default!;
         [Inject] private NavigationManager Nav { get; set; } = default!;
 
-        private CreateCaseWorkerDto model = new();
-        private EditContext? editContext;
-
+        private CreateTaskTypeDto model = new();
         private bool saving;
         private string? error;
-
-        protected override void OnInitialized()
-        {
-            editContext = new EditContext(model);
-        }
-
-
-        private void AddNew() => Nav.NavigateTo("/caseworkers/create");
 
         private async Task HandleValidSubmit()
         {
@@ -34,9 +23,9 @@ namespace CaseTaskManager.UI.Pages.CaseWorkers
             {
                 var ok = await Api.CreateAsync(model);
                 if (ok)
-                    Nav.NavigateTo("/caseworkers", forceLoad: true);
+                    Nav.NavigateTo("/tasktypes", forceLoad: true);
                 else
-                    error = "Failed to create case worker.";
+                    error = "Failed to create task type.";
             }
             catch (Exception ex)
             {
@@ -48,6 +37,6 @@ namespace CaseTaskManager.UI.Pages.CaseWorkers
             }
         }
 
-        private void Cancel() => Nav.NavigateTo("/caseworkers");
+        private void Cancel() => Nav.NavigateTo("/tasktypes");
     }
 }

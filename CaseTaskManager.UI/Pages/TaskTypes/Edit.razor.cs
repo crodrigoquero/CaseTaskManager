@@ -4,7 +4,7 @@ using CaseTaskManager.UI.Models;
 
 namespace CaseTaskManager.UI.Pages.TaskTypes;
 
-public partial class TaskTypesEdit : ComponentBase
+public partial class Edit : ComponentBase
 {
     [Parameter] public int Id { get; set; }
 

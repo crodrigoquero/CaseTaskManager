@@ -4,7 +4,7 @@ using CaseTaskManager.UI.Models.CaseStatus;
 
 namespace CaseTaskManager.UI.Pages.CaseStatuses;
 
-public partial class CaseStatusesCreate : ComponentBase
+public partial class Create : ComponentBase
 {
     [Inject] private ICaseStatusApiService Api { get; set; } = default!;
     [Inject] private NavigationManager Nav { get; set; } = default!;

@@ -6,7 +6,7 @@ using CaseTaskManager.UI.Models.CaseStatus;
 
 namespace CaseTaskManager.UI.Pages.Cases
 {
-    public partial class CreateCase
+    public partial class Create
     {
         [Inject] private ICaseApiService CaseApi { get; set; } = default!;
         [Inject] private ICaseStatusApiService CaseStatusApi { get; set; } = default!;

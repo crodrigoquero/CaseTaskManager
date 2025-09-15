@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CaseTaskManager.UI.Pages.CaseStatuses;
 
-public partial class CaseStatusesEdit : ComponentBase
+public partial class Edit : ComponentBase
 {
     [Parameter] public int Id { get; set; }
 

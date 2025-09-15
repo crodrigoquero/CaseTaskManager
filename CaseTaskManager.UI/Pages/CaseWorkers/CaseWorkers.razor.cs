@@ -21,13 +21,40 @@ public partial class CaseWorkers : ComponentBase
 
     protected async Task ToggleStatus(int id, bool isActive)
     {
-        if (isActive)
-            await CaseWorkerService.DeactivateAsync(id);
-        else
-            await CaseWorkerService.ActivateAsync(id);
+        // find the local item once
+        var item = allCaseWorkers.FirstOrDefault(w => w.Id == id);
+        if (item is null) return;
 
-        await RefreshData();
+        // optimistic UI update
+        var original = item.IsActive;
+        item.IsActive = !original;
+        StateHasChanged();                       // re-render immediately
+
+        try
+        {
+            bool ok;
+            if (original) // was active => deactivate
+                ok = await CaseWorkerService.DeactivateAsync(id);
+            else          // was inactive => activate
+                ok = await CaseWorkerService.ActivateAsync(id);
+
+            if (!ok)
+            {
+                // revert on failure
+                item.IsActive = original;
+                StateHasChanged();
+                // optional: show a toast/message
+            }
+        }
+        catch
+        {
+            // revert on exception
+            item.IsActive = original;
+            StateHasChanged();
+            // optional: log or show error
+        }
     }
+
 
 
     private void NavigateToDelete(int id)

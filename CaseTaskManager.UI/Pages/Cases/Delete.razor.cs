@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CaseTaskManager.UI.Pages.Cases;
 
-public partial class CasesDelete : ComponentBase
+public partial class Delete : ComponentBase
 {
     [Parameter] public int Id { get; set; }
 
@@ -20,7 +20,7 @@ public partial class CasesDelete : ComponentBase
         loading = false;
     }
 
-    private async Task Delete()
+    private async Task DeleteCase()
     {
         var ok = await CaseApi.DeleteCaseAsync(Id);
         if (ok) Nav.NavigateTo("/cases", forceLoad: true);

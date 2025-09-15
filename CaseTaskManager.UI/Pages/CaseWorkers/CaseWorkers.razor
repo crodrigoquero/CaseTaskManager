@@ -23,7 +23,7 @@ else if (allCaseWorkers.Any())
         <tbody>
             @foreach (var worker in allCaseWorkers)
             {
-                <tr>
+                <tr @key="worker.Id">
                     <td>@worker.FullName</td>
                     <td>@worker.Email</td>
                     <td>@(worker.IsActive ? "Yes" : "No")</td>
@@ -35,6 +35,7 @@ else if (allCaseWorkers.Any())
                     </td>
                 </tr>
             }
+
         </tbody>
     </table>
 }

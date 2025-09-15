@@ -5,7 +5,7 @@ using CaseTaskManager.UI.Interfaces;
 
 namespace CaseTaskManager.UI.Pages.Tasks
 {
-    public partial class CreateTask
+    public partial class Create
     {
         [Inject] private ITaskApiService TaskApi { get; set; } = default!;
         [Inject] private NavigationManager Navigation { get; set; } = default!;

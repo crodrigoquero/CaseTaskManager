@@ -4,7 +4,7 @@ using CaseTaskManager.UI.Models.CaseStatus;
 
 namespace CaseTaskManager.UI.Pages.CaseStatuses;
 
-public partial class CaseStatusesDelete : ComponentBase
+public partial class Delete : ComponentBase
 {
     [Parameter] public int Id { get; set; }
 

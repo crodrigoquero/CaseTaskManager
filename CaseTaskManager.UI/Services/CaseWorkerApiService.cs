@@ -34,12 +34,19 @@ public class CaseWorkerApiService : ICaseWorkerApiService
     public async Task<bool> UpdateAsync(int id, CaseWorkerDto caseWorker) =>
         (await _http.PutAsJsonAsync($"caseworkers/{id}", caseWorker)).IsSuccessStatusCode;
 
-    public async Task<bool> ActivateAsync(int id) =>
-        (await _http.PatchAsync($"caseworkers/activate/{id}", null)).IsSuccessStatusCode;
+    public async Task<bool> ActivateAsync(int id)
+    {
+        using var req = new HttpRequestMessage(HttpMethod.Patch, $"caseworkers/activate/caseworker/{id}");
+        var resp = await _http.SendAsync(req);
+        return resp.IsSuccessStatusCode;     // expect 204
+    }
 
-    public async Task<bool> DeactivateAsync(int id) =>
-        (await _http.PatchAsync($"caseworkers/deactivate/{id}", null)).IsSuccessStatusCode;
-
+    public async Task<bool> DeactivateAsync(int id)
+    {
+        using var req = new HttpRequestMessage(HttpMethod.Patch, $"caseworkers/deactivate/caseworker/{id}");
+        var resp = await _http.SendAsync(req);
+        return resp.IsSuccessStatusCode;
+    }
     public async Task<bool> DeleteAsync(int id) =>
         (await _http.DeleteAsync($"caseworkers/{id}")).IsSuccessStatusCode;
 
