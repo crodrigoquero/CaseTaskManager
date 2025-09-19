@@ -19,6 +19,7 @@ else
             <tr>
                 <th>Title</th>
                 <th>Status</th>
+                <th>Type</th>
                 <th>Due Date</th>
                 <th style="width:160px">Actions</th>
             </tr>
@@ -34,6 +35,11 @@ else
                                 ? task.StatusName
                                 : $"#{task.StatusId}")
                         </span>
+                    </td>
+                    <td>
+                        @(string.IsNullOrWhiteSpace(task.TaskTypeName)
+                            ? $"#{task.TaskTypeId}"
+                            : task.TaskTypeName)
                     </td>
                     <td>@task.DueDate.ToShortDateString()</td>
                     <td>
