@@ -1,5 +1,3 @@
-using CaseTaskManager.UI;
-using CaseTaskManager.UI.Configuration;
 using CaseTaskManager.UI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

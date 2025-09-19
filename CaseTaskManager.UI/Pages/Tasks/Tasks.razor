@@ -28,7 +28,13 @@ else
             {
                 <tr>
                     <td>@task.Title</td>
-                    <td>@task.StatusId</td> <!-- replace with status name if you have it -->
+                    <td>
+                        <span class="badge bg-secondary">
+                            @(!string.IsNullOrWhiteSpace(task.StatusName)
+                                ? task.StatusName
+                                : $"#{task.StatusId}")
+                        </span>
+                    </td>
                     <td>@task.DueDate.ToShortDateString()</td>
                     <td>
                         <button class="btn btn-warning btn-sm me-2" @onclick="@(() => EditTask(task.Id))">Edit</button>

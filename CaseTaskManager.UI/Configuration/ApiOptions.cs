@@ -1,5 +1,4 @@
-﻿// /Configuration/ApiOptions.cs
-namespace CaseTaskManager.UI.Configuration
+﻿namespace CaseTaskManager.UI.Configuration
 {
     public sealed class ApiOptions
     {

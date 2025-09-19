@@ -23,7 +23,6 @@ public class CaseWorkerApiService : ICaseWorkerApiService
         return await resp.Content.ReadFromJsonAsync<CaseWorkerDto>();
     }
 
-
     public async Task<int> AddAsync(CaseWorkerDto caseWorker)
     {
         var response = await _http.PostAsJsonAsync("caseworkers/add", caseWorker);

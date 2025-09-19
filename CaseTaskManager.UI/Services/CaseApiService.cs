@@ -49,7 +49,6 @@ public class CaseApiService : ICaseApiService
         return resp.IsSuccessStatusCode;
     }
 
-    // Convenience: update only the status using your PATCH endpoint
     public async Task<bool> UpdateCaseStatusAsync(int caseId, int statusId)
     {
         var resp = await _http.PatchAsync($"cases/update/case/{caseId}/status",

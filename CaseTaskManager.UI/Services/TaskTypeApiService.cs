@@ -42,8 +42,6 @@ namespace CaseTaskManager.UI.Services
             return response.IsSuccessStatusCode;
         }
 
-
-
         public async Task<bool> CreateAsync(CreateTaskTypeDto dto) =>
             (await _http.PostAsJsonAsync("tasktypes/create/task/type", dto)).IsSuccessStatusCode;
 

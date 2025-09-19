@@ -1,5 +1,4 @@
-﻿// /Extensions/ServiceCollectionExtensions.cs
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using CaseTaskManager.UI.Configuration;
 using CaseTaskManager.UI.Data;
 using CaseTaskManager.UI.Interfaces;
