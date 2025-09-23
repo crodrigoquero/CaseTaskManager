@@ -1,6 +1,5 @@
 ﻿@page "/tasks/create"
 
-
 <h3>Create New Task</h3>
 
 <EditForm Model="@newTask" OnValidSubmit="HandleValidSubmit">
@@ -8,33 +7,67 @@
     <ValidationSummary />
 
     <div class="mb-3">
-        <label class="form-label">Case ID</label>
-        
-    </div>
-
-    <div class="mb-3">
         <label class="form-label">Title</label>
         <InputText @bind-Value="newTask.Title" class="form-control" />
+        <ValidationMessage For="@(() => newTask.Title)" />
     </div>
 
     <div class="mb-3">
         <label class="form-label">Description</label>
         <InputTextArea @bind-Value="newTask.Description" class="form-control" />
+        <ValidationMessage For="@(() => newTask.Description)" />
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Status ID</label>
-        <InputNumber @bind-Value="newTask.StatusId" class="form-control" />
+        <label class="form-label">Case</label>
+        <InputSelect @bind-Value="newTask.CaseId" class="form-select">
+            <option value="">-- Select case --</option>
+            @if (cases is not null)
+            {
+                @foreach (var c in cases)
+                {
+                    <option value="@c.Id">@c.Title</option>  <!-- or whatever display field you prefer -->
+                }
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => newTask.CaseId)" />
+    </div>
+
+
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <InputSelect @bind-Value="newTask.StatusId" class="form-select">
+            <option value="">-- Select status --</option>
+            @if (taskStatuses is not null)
+            {
+                @foreach (var s in taskStatuses)
+                {
+                    <option value="@s.Id">@s.StatusName</option>
+                }
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => newTask.StatusId)" />
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Task Type ID</label>
-        <InputNumber @bind-Value="newTask.TaskTypeId" class="form-control" />
+        <label class="form-label">Task Type</label>
+        <InputSelect @bind-Value="newTask.TaskTypeId" class="form-select">
+            <option value="">-- Select type --</option>
+            @if (taskTypes is not null)
+            {
+                @foreach (var t in taskTypes)
+                {
+                    <option value="@t.Id">@t.TypeName</option>
+                }
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => newTask.TaskTypeId)" />
     </div>
 
     <div class="mb-3">
         <label class="form-label">Due Date</label>
         <InputDate @bind-Value="newTask.DueDate" class="form-control" />
+        <ValidationMessage For="@(() => newTask.DueDate)" />
     </div>
 
     <button type="submit" class="btn btn-primary">Create</button>

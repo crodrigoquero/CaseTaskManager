@@ -18,10 +18,10 @@ namespace CaseTaskManager.UI.Services
             return tasks ?? new List<TaskItem>();
         }
 
-        public async Task<bool> CreateTaskAsync(CreateTaskDto newTask)
+        public async Task<bool> CreateTaskAsync(CreateTaskDto dto)
         {
-            var response = await _http.PostAsJsonAsync("tasks/create", newTask);
-            return response.IsSuccessStatusCode;
+            var resp = await _http.PostAsJsonAsync("tasks/create/task", dto); // <-- FIXED
+            return resp.IsSuccessStatusCode;
         }
 
         public async Task<bool> DeleteTaskAsync(int id)
