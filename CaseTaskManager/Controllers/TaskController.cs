@@ -55,16 +55,17 @@ namespace CaseTaskManager.Controllers
             return Ok(tasks);
         }
 
+
         [HttpDelete("delete/task/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteTask(int id)
         {
             var success = await _taskService.DeleteTaskAsync(id);
-
-            if (!success)
-                return NotFound();
-
-            return NoContent(); // 204
+            return success ? Ok(new { deleted = true, id }) : NotFound();
         }
+
+
 
         [HttpPut("update/task/{id}/details")]
         public async Task<IActionResult> UpdateTask(int id, [FromBody] UpdateTaskDto taskDto)

@@ -37,21 +37,16 @@ public partial class Delete : ComponentBase
 
         try
         {
-            var ok = await Api.DeleteTaskAsync(Id); // calls DELETE api/tasks/delete/task/{id}
-            if (ok)
-            {
-                Nav.NavigateTo("/tasks", forceLoad: true);
-            }
-            else
-            {
-                error = "Failed to delete task.";
-            }
+            var ok = await Api.DeleteTaskAsync(Id);
+            if (ok) Nav.NavigateTo("/tasks", forceLoad: true);
+            else error = "Failed to delete task (see console for details).";
         }
         catch (Exception ex)
         {
             error = ex.Message;
         }
     }
+
 
     private void Cancel() => Nav.NavigateTo("/tasks");
 }

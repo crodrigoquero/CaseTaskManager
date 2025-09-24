@@ -117,14 +117,15 @@ namespace CaseTaskManager.Services
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
-            var affectedRows = await connection.ExecuteAsync(
+            var rows = await connection.QuerySingleAsync<int>(
                 "sp_DeleteTask",
                 new { Id = id },
                 commandType: CommandType.StoredProcedure
             );
 
-            return affectedRows > 0;
+            return rows > 0;   // true => 204 NoContent, false => 404 NotFound
         }
+
 
         public async Task<bool> UpdateTaskAsync(int id, UpdateTaskDto taskDto)
         {

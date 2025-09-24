@@ -26,9 +26,26 @@ namespace CaseTaskManager.UI.Services
 
         public async Task<bool> DeleteTaskAsync(int id)
         {
-            var resp = await _http.DeleteAsync($"tasks/{id}");
-            return resp.IsSuccessStatusCode;
+            var relative = $"tasks/delete/task/{id}";        // matches controller: [HttpDelete("delete/task/{id}")]
+            var req = new HttpRequestMessage(HttpMethod.Delete, relative);
+
+            var resp = await _http.SendAsync(req, HttpCompletionOption.ResponseHeadersRead);
+
+            // Success if API returns 200 OK (Option B) or 204 No Content (Option A)
+            if (resp.StatusCode == System.Net.HttpStatusCode.OK ||
+                resp.StatusCode == System.Net.HttpStatusCode.NoContent)
+            {
+                return true;
+            }
+
+            // Dump details to console to spot route/status issues fast
+            var absolute = new Uri(_http.BaseAddress!, relative);
+            var body = await resp.Content.ReadAsStringAsync();
+            Console.WriteLine($"DELETE failed: {(int)resp.StatusCode} {resp.ReasonPhrase} for {absolute}\n{body}");
+
+            return false;
         }
+
 
         public async Task<bool> UpdateTaskStatusAsync(int id, int statusId)
         {
