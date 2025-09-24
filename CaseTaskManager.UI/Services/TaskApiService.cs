@@ -39,9 +39,10 @@ namespace CaseTaskManager.UI.Services
 
         public async Task<bool> UpdateTaskAsync(int id, UpdateTaskDto dto)
         {
-            var response = await _http.PutAsJsonAsync($"tasks/{id}", dto);
-            return response.IsSuccessStatusCode;
+            var resp = await _http.PutAsJsonAsync($"tasks/update/task/{id}/details", dto);
+            return resp.IsSuccessStatusCode;
         }
+
 
         public async Task<TaskItem?> GetTaskByIdAsync(int id)
         {

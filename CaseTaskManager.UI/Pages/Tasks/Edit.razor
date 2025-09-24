@@ -20,26 +20,41 @@ else
         <div class="mb-3">
             <label class="form-label">Title</label>
             <InputText @bind-Value="model.Title" class="form-control" />
+            <ValidationMessage For="@(() => model.Title)" />
         </div>
 
         <div class="mb-3">
             <label class="form-label">Description</label>
             <InputTextArea @bind-Value="model.Description" class="form-control" />
+            <ValidationMessage For="@(() => model.Description)" />
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Status Id</label>
-            <InputNumber @bind-Value="model.StatusId" class="form-control" />
+            <label class="form-label">Status</label>
+            <InputSelect @bind-Value="model.StatusId" class="form-select">
+                @foreach (var s in taskStatuses)
+                {
+                    <option value="@s.Id">@s.StatusName</option>
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => model.StatusId)" />
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Task Type Id</label>
-            <InputNumber @bind-Value="model.TaskTypeId" class="form-control" />
+            <label class="form-label">Task Type</label>
+            <InputSelect @bind-Value="model.TaskTypeId" class="form-select">
+                @foreach (var t in taskTypes)
+                {
+                    <option value="@t.Id">@t.TypeName</option>
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => model.TaskTypeId)" />
         </div>
 
         <div class="mb-3">
             <label class="form-label">Due Date</label>
             <InputDate @bind-Value="model.DueDate" class="form-control" />
+            <ValidationMessage For="@(() => model.DueDate)" />
         </div>
 
         <button type="submit" class="btn btn-primary" disabled="@saving">

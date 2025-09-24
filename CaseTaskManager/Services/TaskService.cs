@@ -125,10 +125,10 @@ namespace CaseTaskManager.Services
 
             return affectedRows > 0;
         }
+
         public async Task<bool> UpdateTaskAsync(int id, UpdateTaskDto taskDto)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
-
             var parameters = new
             {
                 Id = id,
@@ -139,14 +139,15 @@ namespace CaseTaskManager.Services
                 DueDate = taskDto.DueDate
             };
 
-            var affectedRows = await connection.ExecuteAsync(
+            var rows = await connection.QuerySingleAsync<int>(
                 "sp_UpdateTask",
                 parameters,
                 commandType: CommandType.StoredProcedure
             );
 
-            return affectedRows > 0;
+            return rows > 0;
         }
+
         public async Task<bool> UpdateTaskStatusAsync(int taskId, int statusId)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
