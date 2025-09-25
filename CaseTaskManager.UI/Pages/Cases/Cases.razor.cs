@@ -12,8 +12,10 @@ public partial class Cases : ComponentBase
     [Inject] public NavigationManager Nav { get; set; } = default!;
 
     protected List<CaseItem>? allCases;
-    private Dictionary<int, string>? statusLookup; // NEW
+    private Dictionary<int, string>? statusLookup;
     private bool isLoading = true;                 // optional UX flag
+
+    private void ViewDetails(int id) => Nav.NavigateTo($"/cases/details/{id}");
 
     protected override async Task OnInitializedAsync()
     {

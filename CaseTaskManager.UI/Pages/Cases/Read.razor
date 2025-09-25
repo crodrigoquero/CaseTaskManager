@@ -1,0 +1,39 @@
+﻿@page "/cases/details/{Id:int}"
+
+<h3>Case Details</h3>
+
+@if (loading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (item is null)
+{
+    <div class="alert alert-warning">Case not found.</div>
+    <button class="btn btn-secondary" @onclick="Cancel">Back</button>
+}
+else
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title mb-1">@item.Title</h5>
+            <p class="text-muted mb-2">
+                <strong>Status:</strong>
+                @(!string.IsNullOrWhiteSpace(item.CurrentStatusName)
+                    ? item.CurrentStatusName
+                    : (item.CurrentStatusId.HasValue ? $"#{item.CurrentStatusId}" : "No status"))
+            </p>
+            @if (!string.IsNullOrWhiteSpace(item.Description))
+            {
+                <p class="card-text">@item.Description</p>
+            }
+            <p class="mb-0"><small><strong>Created:</strong> @item.CreatedAt.ToString("yyyy-MM-dd HH:mm")</small></p>
+        </div>
+    </div>
+
+    <button class="btn btn-secondary" @onclick="Cancel">Back</button>
+
+    @if (!string.IsNullOrWhiteSpace(error))
+    {
+        <div class="alert alert-danger mt-3">@error</div>
+    }
+}
