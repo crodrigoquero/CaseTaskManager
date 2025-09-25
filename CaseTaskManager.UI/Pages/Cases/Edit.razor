@@ -19,18 +19,38 @@ else
         <div class="mb-3">
             <label class="form-label">Title</label>
             <InputText @bind-Value="model.Title" class="form-control" />
-            <ValidationMessage For="@(() => model.Title)" />
+            <ValidationMessage For="@(() => model!.Title)" />
         </div>
 
         <div class="mb-3">
             <label class="form-label">Description</label>
             <InputTextArea @bind-Value="model.Description" class="form-control" />
-            <ValidationMessage For="@(() => model.Description)" />
+            <ValidationMessage For="@(() => model!.Description)" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Status</label>
+            <InputSelect @bind-Value="model.StatusId" class="form-select">
+                <option value="">-- Select status --</option>
+                @if (caseStatuses?.Any() == true)
+                {
+                    @foreach (var s in caseStatuses)
+                    {
+                        <option value="@s.Id">@s.StatusName</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => model!.StatusId)" />
         </div>
 
         <button type="submit" class="btn btn-primary" disabled="@saving">
             @(saving ? "Saving..." : "Save Changes")
         </button>
         <button type="button" class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+
+        @if (!string.IsNullOrWhiteSpace(error))
+        {
+            <div class="alert alert-danger mt-3">@error</div>
+        }
     </EditForm>
 }

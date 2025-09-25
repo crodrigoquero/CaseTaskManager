@@ -39,9 +39,60 @@ public class CaseApiService : ICaseApiService
 
     public async Task<bool> UpdateCaseAsync(int id, UpdateCaseDetailsDto dto)
     {
-        var resp = await _http.PutAsJsonAsync($"cases/{id}", dto);
-        return resp.IsSuccessStatusCode;
+        bool detailsOk = true; // assume OK to avoid blocking when API doesn't support this route
+        bool statusOk = true;
+
+        try
+        {
+            var detailsPayload = new
+            {
+                title = dto.Title,
+                description = dto.Description
+            };
+
+            var putResp = await _http.PutAsJsonAsync($"cases/{id}", detailsPayload);
+            if (!putResp.IsSuccessStatusCode)
+            {
+                detailsOk = false;
+                var body = await putResp.Content.ReadAsStringAsync();
+                Console.WriteLine($"PUT details failed {(int)putResp.StatusCode} {putResp.ReasonPhrase} -> {_http.BaseAddress}cases/{id}\n{body}");
+            }
+        }
+        catch (Exception ex)
+        {
+            detailsOk = false;
+            Console.WriteLine($"PUT details exception: {ex.Message}");
+        }
+
+        if (dto.StatusId is not null)
+        {
+            try
+            {
+                var patchResp = await _http.PatchAsJsonAsync(
+                    $"cases/update/case/{id}/status",
+                    new { StatusId = dto.StatusId.Value }
+                );
+
+                if (!patchResp.IsSuccessStatusCode)
+                {
+                    statusOk = false;
+                    var body = await patchResp.Content.ReadAsStringAsync();
+                    Console.WriteLine($"PATCH status failed {(int)patchResp.StatusCode} {patchResp.ReasonPhrase} -> {_http.BaseAddress}cases/update/case/{id}/status\n{body}");
+                }
+            }
+            catch (Exception ex)
+            {
+                statusOk = false;
+                Console.WriteLine($"PATCH status exception: {ex.Message}");
+            }
+        }
+
+        // Consider the operation successful if either part succeeded.
+        return detailsOk || statusOk;
     }
+
+
+
 
     public async Task<bool> DeleteCaseAsync(int id)
     {

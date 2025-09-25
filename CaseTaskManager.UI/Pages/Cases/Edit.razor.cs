@@ -1,6 +1,7 @@
-﻿using CaseTaskManager.UI.Interfaces;
+﻿using Microsoft.AspNetCore.Components;
+using CaseTaskManager.UI.Interfaces;
 using CaseTaskManager.UI.Models.Case;
-using Microsoft.AspNetCore.Components;
+using CaseTaskManager.UI.Models.CaseStatus; // adjust namespace if different
 
 namespace CaseTaskManager.UI.Pages.Cases;
 
@@ -9,25 +10,46 @@ public partial class Edit : ComponentBase
     [Parameter] public int Id { get; set; }
 
     [Inject] private ICaseApiService CaseApi { get; set; } = default!;
+    [Inject] private ICaseStatusApiService CaseStatusApi { get; set; } = default!;
     [Inject] private NavigationManager Nav { get; set; } = default!;
 
     private UpdateCaseDetailsDto? model;
+    private List<CaseStatusDto>? caseStatuses;
     private bool loading = true;
     private bool saving = false;
     private string? error;
 
     protected override async Task OnInitializedAsync()
     {
-        var caseItem = await CaseApi.GetCaseByIdAsync(Id);
-        if (caseItem != null)
+        loading = true;
+        try
         {
-            model = new UpdateCaseDetailsDto
+            var caseTask = CaseApi.GetCaseByIdAsync(Id);
+            var statusesTask = CaseStatusApi.GetAllAsync();
+
+            await Task.WhenAll(caseTask, statusesTask);
+
+            var caseItem = caseTask.Result;
+            caseStatuses = statusesTask.Result?.ToList() ?? new List<CaseStatusDto>();
+
+            if (caseItem != null)
             {
-                Title = caseItem.Title,
-                Description = caseItem.Description
-            };
+                model = new UpdateCaseDetailsDto
+                {
+                    Title = caseItem.Title,
+                    Description = caseItem.Description,
+                    StatusId = caseItem.CurrentStatusId
+                };
+            }
         }
-        loading = false;
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+        finally
+        {
+            loading = false;
+        }
     }
 
     private async Task HandleValidSubmit()
@@ -35,13 +57,26 @@ public partial class Edit : ComponentBase
         if (model is null) return;
 
         saving = true;
-        var ok = await CaseApi.UpdateCaseAsync(Id, model);
-        saving = false;
+        error = null;
+        try
+        {
+            var ok = await CaseApi.UpdateCaseAsync(Id, model);
+            if (ok)
+            {
+                Nav.NavigateTo("/cases", forceLoad: true);
+                return;
+            }
 
-        if (ok)
-            Nav.NavigateTo("/cases", forceLoad: true);
-        else
             error = "Failed to update case.";
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+        finally
+        {
+            saving = false;
+        }
     }
 
     private void Cancel() => Nav.NavigateTo("/cases");
