@@ -95,7 +95,8 @@ namespace CaseTaskManager.Services
             var parameters = new
             {
                 Title = dto.Title,
-                Description = dto.Description
+                Description = dto.Description,
+                CurrentStatusId = dto.CurrentStatusId
             };
 
             var newId = await connection.QuerySingleAsync<int>(
@@ -106,6 +107,7 @@ namespace CaseTaskManager.Services
 
             return newId;
         }
+
 
         public async Task<int> AssignCaseWorkerAsync(CaseAssignmentDto assignmentDto)
         {
