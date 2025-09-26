@@ -25,5 +25,6 @@ public partial class Tasks
 
     private void EditTask(int id) => Navigation.NavigateTo($"/tasks/edit/{id}");
     private void GoToDelete(int id) => Navigation.NavigateTo($"/tasks/delete/{id}"); // confirmation page route
+    private void ViewDetails(int id) => Navigation.NavigateTo($"/tasks/details/{id}");
 
 }
