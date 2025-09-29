@@ -1,6 +1,6 @@
-﻿namespace CaseTaskManager.Models
+﻿namespace CaseTaskManager.Models.TaskType
 {
-    public class CreateTaskTypeDto
+    public class CreateDto
     {
         public string TypeName { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CaseTaskManager.Interfaces;
-using CaseTaskManager.Models;
+using CaseTaskManager.Models.TaskStatus;
 
 namespace CaseTaskManager.Controllers
 {

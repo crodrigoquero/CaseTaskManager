@@ -3,6 +3,8 @@ using CaseTaskManager.Interfaces;
 using CaseTaskManager.Models;
 using CaseTaskManager.Models.Case;
 using Microsoft.Data.SqlClient;
+using CaseTaskManager.Models.CaseStatus;
+using CaseTaskManager.Models.CaseAssignment;
 
 
 namespace CaseTaskManager.Controllers
@@ -37,7 +39,7 @@ namespace CaseTaskManager.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCase(int id, [FromBody] UpdateCaseDetailsDto dto)
+        public async Task<IActionResult> UpdateCase(int id, [FromBody] Models.Case.UpdateDto dto)
         {
             var updated = await _caseService.UpdateCaseDetailsAsync(id, dto);
             if (!updated)
@@ -47,7 +49,7 @@ namespace CaseTaskManager.Controllers
         }
 
         [HttpPost("create/case")]
-        public async Task<IActionResult> CreateCase([FromBody] CreateCaseDto dto)
+        public async Task<IActionResult> CreateCase([FromBody] CreateDto dto)
         {
             if (dto is null) return BadRequest("Payload required.");
 
@@ -59,7 +61,7 @@ namespace CaseTaskManager.Controllers
         }
 
         [HttpPatch("update/case/{caseId}/status")]
-        public async Task<IActionResult> UpdateCaseStatus(int caseId, [FromBody] UpdateCaseStatusDto dto)
+        public async Task<IActionResult> UpdateCaseStatus(int caseId, [FromBody] Models.CaseStatus.UpdateDto dto)
         {
             var success = await _caseService.UpdateCaseStatusAsync(caseId, dto.StatusId);
             if (!success)

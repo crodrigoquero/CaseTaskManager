@@ -1,8 +1,10 @@
 ﻿using Dapper;
 using CaseTaskManager.Interfaces;
-using CaseTaskManager.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using CaseTaskManager.Models.Task;
+using CaseTaskManager.Models.TaskType;
+using CaseTaskManager.Models.TaskStatus;
 
 namespace CaseTaskManager.Services
 {
@@ -14,7 +16,7 @@ namespace CaseTaskManager.Services
             _config = config;
         }
 
-        public async Task<int> AddTaskAsync(CreateTaskDto newTask)
+        public async Task<int> AddTaskAsync(Models.Task.CreateDto newTask)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
@@ -95,7 +97,7 @@ namespace CaseTaskManager.Services
 
             return tasks;
         }
-        public async Task<int> AddTaskTypeAsync(CreateTaskTypeDto taskTypeDto)
+        public async Task<int> AddTaskTypeAsync(Models.TaskType.CreateDto taskTypeDto)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
@@ -127,7 +129,7 @@ namespace CaseTaskManager.Services
         }
 
 
-        public async Task<bool> UpdateTaskAsync(int id, UpdateTaskDto taskDto)
+        public async Task<bool> UpdateTaskAsync(int id, Models.Task.UpdateDto taskDto)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             var parameters = new

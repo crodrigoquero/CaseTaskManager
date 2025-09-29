@@ -41,7 +41,7 @@ namespace CaseTaskManager.Services
             return workers;
         }
 
-        public async Task<bool> UpdateCaseWorkerAsync(int id, UpdateCaseWorkerDto dto)
+        public async Task<bool> UpdateCaseWorkerAsync(int id, UpdateDto dto)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
@@ -98,7 +98,7 @@ namespace CaseTaskManager.Services
 
             return affectedRows > 0;
         }
-        public async Task<int> AddCaseWorkerAsync(CreateCaseWorkerDto dto)
+        public async Task<int> AddCaseWorkerAsync(CreateDto dto)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 

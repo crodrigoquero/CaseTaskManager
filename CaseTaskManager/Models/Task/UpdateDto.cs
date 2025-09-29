@@ -1,8 +1,7 @@
-﻿namespace CaseTaskManager.Models
+﻿namespace CaseTaskManager.Models.Task
 {
-    public class CreateTaskDto
+    public class UpdateDto
     {
-        public int CaseId { get; set; }
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; }
         public int StatusId { get; set; }

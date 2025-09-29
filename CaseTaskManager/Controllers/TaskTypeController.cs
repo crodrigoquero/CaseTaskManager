@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CaseTaskManager.Interfaces;
-using CaseTaskManager.Models;
 using CaseTaskManager.Services;
+using CaseTaskManager.Models.TaskType;
 
 
 namespace CaseTaskManager.Controllers
@@ -36,7 +36,7 @@ namespace CaseTaskManager.Controllers
         }
 
         [HttpPost("create/task/type")]
-        public async Task<IActionResult> CreateTaskType([FromBody] CreateTaskTypeDto taskTypeDto)
+        public async Task<IActionResult> CreateTaskType([FromBody] CreateDto taskTypeDto)
         {
             var newId = await _taskTypeService.AddTaskTypeAsync(taskTypeDto);
             return CreatedAtAction(nameof(GetTaskTypeById), new { id = newId }, new { id = newId });

@@ -4,6 +4,7 @@ using System.Data;
 using CaseTaskManager.Models.Case;
 using CaseTaskManager.Interfaces;
 using CaseTaskManager.Models;
+using CaseTaskManager.Models.CaseAssignment;
 
 namespace CaseTaskManager.Services
 {
@@ -40,7 +41,7 @@ namespace CaseTaskManager.Services
             return result;
         }
 
-        public async Task<bool> UpdateCaseDetailsAsync(int id, UpdateCaseDetailsDto dto)
+        public async Task<bool> UpdateCaseDetailsAsync(int id, UpdateDto dto)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
@@ -88,7 +89,7 @@ namespace CaseTaskManager.Services
             return affectedRows > 0;
         }
 
-        public async Task<int> AddCaseAsync(CreateCaseDto dto)
+        public async Task<int> AddCaseAsync(CreateDto dto)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 

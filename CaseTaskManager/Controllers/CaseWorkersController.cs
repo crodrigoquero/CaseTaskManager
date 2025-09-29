@@ -32,7 +32,7 @@ namespace CaseTaskManager.Controllers
         }
 
         [HttpPut("update/caseworker/{id}")]
-        public async Task<IActionResult> UpdateCaseWorker(int id, [FromBody] UpdateCaseWorkerDto dto)
+        public async Task<IActionResult> UpdateCaseWorker(int id, [FromBody] UpdateDto dto)
         {
             var success = await _caseWorkerService.UpdateCaseWorkerAsync(id, dto);
             if (!success) return NotFound();
@@ -68,7 +68,7 @@ namespace CaseTaskManager.Controllers
         }
 
         [HttpPost("create/caseworker")]
-        public async Task<IActionResult> CreateCaseWorker([FromBody] CreateCaseWorkerDto dto)
+        public async Task<IActionResult> CreateCaseWorker([FromBody] CreateDto dto)
         {
             var newId = await _caseWorkerService.AddCaseWorkerAsync(dto);
             return CreatedAtAction(nameof(GetCaseWorkerById), new { id = newId }, new { id = newId });

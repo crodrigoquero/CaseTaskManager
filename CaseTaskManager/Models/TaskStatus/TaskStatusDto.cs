@@ -1,4 +1,4 @@
-﻿namespace CaseTaskManager.Models
+﻿namespace CaseTaskManager.Models.TaskStatus
 {
     public class TaskStatusDto
     {

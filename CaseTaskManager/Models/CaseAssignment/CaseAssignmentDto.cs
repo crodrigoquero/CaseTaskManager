@@ -1,4 +1,4 @@
-﻿namespace CaseTaskManager.Models.Case
+﻿namespace CaseTaskManager.Models.CaseAssignment
 {
     public class CaseAssignmentDto
     {

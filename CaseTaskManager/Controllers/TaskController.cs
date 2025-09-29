@@ -1,5 +1,6 @@
 ﻿using CaseTaskManager.Interfaces;
-using CaseTaskManager.Models;
+using CaseTaskManager.Models.Task;
+using CaseTaskManager.Models.TaskStatus;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CaseTaskManager.Controllers
@@ -17,7 +18,7 @@ namespace CaseTaskManager.Controllers
         }
 
         [HttpPost("create/task")]
-        public async Task<IActionResult> CreateTask([FromBody] CreateTaskDto taskDto)
+        public async Task<IActionResult> CreateTask([FromBody] CreateDto taskDto)
         {
             var newTaskId = await _taskService.AddTaskAsync(taskDto);
             return CreatedAtAction(nameof(GetTaskById), new { id = newTaskId }, new { id = newTaskId });
@@ -68,7 +69,7 @@ namespace CaseTaskManager.Controllers
 
 
         [HttpPut("update/task/{id}/details")]
-        public async Task<IActionResult> UpdateTask(int id, [FromBody] UpdateTaskDto taskDto)
+        public async Task<IActionResult> UpdateTask(int id, [FromBody] Models.Task.UpdateDto taskDto)
         {
             var updated = await _taskService.UpdateTaskAsync(id, taskDto);
             if (!updated)
@@ -78,7 +79,7 @@ namespace CaseTaskManager.Controllers
         }
 
         [HttpPatch("update/task/{TaskId}/status")]
-        public async Task<IActionResult> UpdateTaskStatus(int TaskId, [FromBody] UpdateTaskStatusDto dto)
+        public async Task<IActionResult> UpdateTaskStatus(int TaskId, [FromBody] Models.TaskStatus.UpdateDto dto)
         {
             var updated = await _taskService.UpdateTaskStatusAsync(TaskId, dto.StatusId);
             if (!updated)
