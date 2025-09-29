@@ -2,11 +2,9 @@
 
 <h3>All Tasks</h3>
 
-<div class="mb-3">
-    <button class="btn btn-primary" @onclick="AddNewTask">
-        <span class="oi oi-plus" aria-hidden="true"></span> New Task
-    </button>
-</div>
+<button class="btn btn-primary mb-3" @onclick="AddNewTask">
+    <span class="oi oi-plus" aria-hidden="true"></span> New Task
+</button>
 
 @if (allTasks is null || !allTasks.Any())
 {
@@ -14,43 +12,55 @@
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Status</th>
-                <th>Type</th>
-                <th>Due Date</th>
-                <th style="width:220px">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var task in allTasks)
-            {
+    <div class="table-responsive">
+        <table class="table table-hover table-sm align-middle table-fixed">
+            <colgroup>
+                <col style="width:24%" />  @* Title *@
+                <col style="width:17%" />  @* Status *@
+                <col style="width:17%" />  @* Type *@
+                <col style="width:17%" />  @* Due Date *@
+                <col style="width:23%" />  @* Actions (slightly compact) *@
+            </colgroup>
+
+            <thead class="table-light sticky-top">
                 <tr>
-                    <td>@task.Title</td>
-                    <td>
-                        <span class="badge bg-secondary">
-                            @(!string.IsNullOrWhiteSpace(task.StatusName)
-                                ? task.StatusName
-                                : $"#{task.StatusId}")
-                        </span>
-                    </td>
-                    <td>
-                        @(string.IsNullOrWhiteSpace(task.TaskTypeName)
-                            ? $"#{task.TaskTypeId}"
-                            : task.TaskTypeName)
-                    </td>
-                    <td>@task.DueDate.ToShortDateString()</td>
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                            <button class="btn btn-info" @onclick="@(() => ViewDetails(task.Id))">Details</button>
-                            <button class="btn btn-warning" @onclick="@(() => EditTask(task.Id))">Edit</button>
-                            <button class="btn btn-outline-danger" @onclick="@(() => GoToDelete(task.Id))">Delete</button>
-                        </div>
-                    </td>
+                    <th>Title</th>
+                    <th class="text-center">Status</th>
+                    <th>Type</th>
+                    <th>Due Date</th>
+                    <th class="text-end">Actions</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+                @foreach (var task in allTasks)
+                {
+                    <tr>
+                        <td class="fw-semibold text-truncate" title="@task.Title">@task.Title</td>
+
+                        <td class="text-center">
+                            <span class="badge bg-secondary-subtle text-body border">
+                                @(!string.IsNullOrWhiteSpace(task.StatusName) ? task.StatusName : $"#{task.StatusId}")
+                            </span>
+                        </td>
+
+                        <td class="text-truncate" title="@task.TaskTypeName">
+                            @(string.IsNullOrWhiteSpace(task.TaskTypeName) ? $"#{task.TaskTypeId}" : task.TaskTypeName)
+                        </td>
+
+                        <td>@task.DueDate.ToString("yyyy-MM-dd")</td>
+
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm btn-group-compact" role="group" aria-label="Actions">
+                                <button class="btn btn-info btn-compact" @onclick="@(() => ViewDetails(task.Id))">Details</button>
+                                <button class="btn btn-warning btn-compact" @onclick="@(() => EditTask(task.Id))">Edit</button>
+                                <button class="btn btn-outline-danger btn-compact" @onclick="@(() => GoToDelete(task.Id))">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
 }
