@@ -33,6 +33,7 @@ CaseTaskManager/
 
 - [⚙️ Setup & Installation Guide](setup.md)  
 - [💡 Possible Improvements](improvements.md)  
+- [⚙️ Architecture Notes](Architecture.md)  
 - [⚙️ Seed Script: Case Statuses](seed-case-statuses.md)
 - [⚙️ Seed Script: Task Statuses](seed-task-statuses.md)
 - [🤝 Contributing Guidelines](contributing.md)
