@@ -30,8 +30,9 @@ public class CaseWorkerApiService : ICaseWorkerApiService
         return result?["newCaseWorkerId"] ?? 0;
     }
 
-    public async Task<bool> UpdateAsync(int id, CaseWorkerDto caseWorker) =>
-        (await _http.PutAsJsonAsync($"caseworkers/{id}", caseWorker)).IsSuccessStatusCode;
+    public async Task<bool> UpdateAsync(int id, UpdateCaseWorkerDto dto)
+       => (await _http.PutAsJsonAsync($"caseworkers/update/caseworker/{id}", dto))
+          .IsSuccessStatusCode;
 
     public async Task<bool> ActivateAsync(int id)
     {

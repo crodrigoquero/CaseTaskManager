@@ -7,7 +7,7 @@ namespace CaseTaskManager.UI.Pages.CaseWorkers;
 public partial class CaseWorkers : ComponentBase
 {
     [Inject] private ICaseWorkerApiService CaseWorkerService { get; set; } = default!;
-    [Inject] private NavigationManager Nav { get; set; } = default!; 
+    [Inject] private NavigationManager Nav { get; set; } = default!;
 
     protected List<CaseWorkerDto> allCaseWorkers = new();
     protected bool isLoading = true;
@@ -19,54 +19,35 @@ public partial class CaseWorkers : ComponentBase
         isLoading = false;
     }
 
-    protected async Task ToggleStatus(int id, bool isActive)
+    protected async Task ToggleStatus(int id)
     {
-        // find the local item once
         var item = allCaseWorkers.FirstOrDefault(w => w.Id == id);
         if (item is null) return;
 
-        // optimistic UI update
         var original = item.IsActive;
-        item.IsActive = !original;
-        StateHasChanged();                       // re-render immediately
+        item.IsActive = !original;   // optimistic UI update
+        StateHasChanged();
 
         try
         {
-            bool ok;
-            if (original) // was active => deactivate
-                ok = await CaseWorkerService.DeactivateAsync(id);
-            else          // was inactive => activate
-                ok = await CaseWorkerService.ActivateAsync(id);
+            var ok = original
+                ? await CaseWorkerService.DeactivateAsync(id)
+                : await CaseWorkerService.ActivateAsync(id);
 
             if (!ok)
             {
-                // revert on failure
-                item.IsActive = original;
+                item.IsActive = original; // revert on failure
                 StateHasChanged();
-                // optional: show a toast/message
             }
         }
         catch
         {
-            // revert on exception
-            item.IsActive = original;
+            item.IsActive = original;     // revert on exception
             StateHasChanged();
-            // optional: log or show error
         }
     }
 
-
-
-    private void NavigateToDelete(int id)
-    {
-        Nav.NavigateTo($"/caseworkers/delete/{id}");
-    }
-
-    private async Task RefreshData()
-    {
-        allCaseWorkers = await CaseWorkerService.GetAllAsync();
-        StateHasChanged();
-    }
-
-    private void AddNew() => Nav.NavigateTo("/caseworkers/create"); 
+    private void NavigateToEdit(int id) => Nav.NavigateTo($"/caseworkers/edit/{id}");
+    private void NavigateToDelete(int id) => Nav.NavigateTo($"/caseworkers/delete/{id}");
+    private void AddNew() => Nav.NavigateTo("/caseworkers/create");
 }

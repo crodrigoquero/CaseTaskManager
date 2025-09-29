@@ -1,45 +1,70 @@
 ﻿@page "/caseworkers"
 
-
 <h3>Case Workers</h3>
 
 <button class="btn btn-primary mb-3" @onclick="AddNew">Add Case Worker</button>
 
 @if (isLoading)
 {
-    <p>Loading...</p>
+    <p><em>Loading...</em></p>
 }
-else if (allCaseWorkers.Any())
+else if (allCaseWorkers is null || !allCaseWorkers.Any())
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Is Active</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var worker in allCaseWorkers)
-            {
-                <tr @key="worker.Id">
-                    <td>@worker.FullName</td>
-                    <td>@worker.Email</td>
-                    <td>@(worker.IsActive ? "Yes" : "No")</td>
-                    <td>
-                        <button class="btn btn-sm btn-warning" @onclick="() => ToggleStatus(worker.Id, worker.IsActive)">
-                            @(worker.IsActive ? "Deactivate" : "Activate")
-                        </button>
-                        <button class="btn btn-sm btn-danger" @onclick="() => NavigateToDelete(worker.Id)">Delete</button>
-                    </td>
-                </tr>
-            }
-
-        </tbody>
-    </table>
+    <p>No case workers found.</p>
 }
 else
 {
-    <p>No case workers found.</p>
+    <div class="table-responsive">
+        <table class="table table-hover table-sm align-middle">
+            <colgroup>
+                <col style="width:40%" />   @* Full Name *@
+                <col style="width:40%" />   @* Email *@
+                <col style="width:20%" />   @* Actions *@
+            </colgroup>
+
+            <thead class="table-light sticky-top">
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var worker in allCaseWorkers)
+                {
+                    <tr @key="worker.Id">
+                        <td class="fw-semibold text-truncate" title="@worker.FullName">@worker.FullName</td>
+                        <td class="text-truncate" title="@worker.Email">@worker.Email</td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button class="btn btn-warning" @onclick="() => NavigateToEdit(worker.Id)">Edit</button>
+
+                                @if (worker.IsActive)
+                                {
+                                    <button class="btn btn-outline-warning"
+                                            @onclick="() => ToggleStatus(worker.Id)">
+                                        Deactivate
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-outline-success"
+                                            @onclick="() => ToggleStatus(worker.Id)">
+                                        Activate
+                                    </button>
+                                }
+
+
+                                <button class="btn btn-outline-danger"
+                                        @onclick="() => NavigateToDelete(worker.Id)">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
